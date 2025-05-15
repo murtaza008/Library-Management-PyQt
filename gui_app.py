@@ -1,5 +1,6 @@
 # gui_app_pyqt.py
-
+# Murtaza Mazhar 
+# F2022065163
 import sys
 from PyQt5.QtWidgets import (
     QApplication, QWidget, QLabel, QLineEdit, QVBoxLayout, QHBoxLayout,
