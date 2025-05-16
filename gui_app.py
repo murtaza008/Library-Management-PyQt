@@ -48,7 +48,8 @@ class LibraryApp(QWidget):
             ("Lend Book", self.lend_book),
             ("Return Book", self.return_book),
             ("Remove Book", self.remove_book),
-            ("Books by Author", self.view_by_author)
+            ("Books by Author", self.view_by_author),
+            ("Show All Books", self.update_book_list) 
         ]:
             btn = QPushButton(text)
             btn.clicked.connect(method)
@@ -74,6 +75,11 @@ class LibraryApp(QWidget):
             QMessageBox.warning(self, "Error", "All fields except size are required.")
             return
 
+        for book in self.library.books:
+            if book.isbn == isbn:
+                QMessageBox.warning(self, "Error", "A book with this ISBN already exists.")
+                return
+
         if is_ebook:
             try:
                 size = float(size)
@@ -86,6 +92,11 @@ class LibraryApp(QWidget):
 
         self.library.add_book(book)
         QMessageBox.information(self, "Success", f"Book '{title}' added.")
+        self.title_input.clear()
+        self.author_input.clear()
+        self.isbn_input.clear()
+        self.size_input.clear()
+        self.ebook_checkbox.setChecked(False)
         self.update_book_list()
 
     def lend_book(self):
@@ -121,17 +132,21 @@ class LibraryApp(QWidget):
             books = list(self.library.books_by_author(author))
             self.listbox.clear()
             if books:
-                self.listbox.addItem(f"Books by {author}:")
+                self.listbox.addItem(f"All books by {author}:")
                 for book in books:
-                    self.listbox.addItem(str(book))
+                    status = "Available" if not book.is_lent else "Lent"
+                    book_type = "eBook" if isinstance(book, EBook) else "Book"
+                    self.listbox.addItem(f"{str(book)} [{book_type}, {status}]")
             else:
                 self.listbox.addItem("No books found.")
 
     def update_book_list(self):
         self.listbox.clear()
-        self.listbox.addItem("Available Books:")
-        for book in self.library:
-            self.listbox.addItem(str(book))
+        self.listbox.addItem("All Books:")
+        for book in self.library.books:
+            status = "Available" if not book.is_lent else "Lent"
+            book_type = "eBook" if isinstance(book, EBook) else "Book"
+            self.listbox.addItem(f"{str(book)} [{book_type}, {status}]")
 
 if __name__ == "__main__":
     app = QApplication(sys.argv)
