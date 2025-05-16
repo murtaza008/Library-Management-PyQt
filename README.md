@@ -1,64 +1,65 @@
-# Library-Management-PyQt
+# 📘 Library-Management-PyQt
 
-A modern desktop Library Management System built with Python and PyQt5. Manage physical books and eBooks through an intuitive and responsive GUI.
+A modern desktop Library Management System built with **Python** and **PyQt5**. Manage physical books and eBooks with an intuitive graphical user interface.
 
-## Features
+---
 
-- Add physical books and eBooks (with download size)
-- Lend and return books with availability checks
-- Remove books by ISBN
-- Search books by author
-- View real-time inventory of available books
+## ✨ Features
 
-## Technologies
+- ➕ Add physical books and eBooks (with download size)
+- 📤 Lend and 📥 return books with availability checks
+- ❌ Remove books using ISBN
+- 🔍 Search books by author name
+- 📚 View real-time inventory of all books
+- ⚠️ Custom exception handling for unavailable books
 
-- Python 3.x
-- PyQt5 for GUI
-- Custom exception handling
+---
 
-## Project Structure
+## 🖥️ Technologies Used
 
+- Python 3.x  
+- PyQt5 for GUI  
+- Object-Oriented Programming (OOP)  
+- Custom Exception Handling  
+
+---
+
+## 📂 Project Structure
+
+```
 Library-Management-PyQt/
-├── book_library.py # Core classes and custom exceptions
-├── gui_app.py # PyQt5 GUI application
+│
+├── book_library.py # Core classes: Book, EBook, Library, Exceptions
+├── gui_app.py # GUI built with PyQt5
 └── README.md # Project documentation
-
-## Setup
-
-Clone the repository:
-
-```bash
-git clone https://github.com/your-username/Library-Management-PyQt.git
-cd Library-Management-PyQt
 ```
 
-Create and activate a virtual environment:
+---
+
+## ⚙️ Setup Instructions
+
+## Create & Activate Virtual Environment
 
 ```bash
-python -m venv venv
-# On macOS/Linux:
+# On macOS/Linux
+python3 -m venv venv
 source venv/bin/activate
-# On Windows:
+
+# On Windows
+python -m venv venv
 venv\Scripts\activate
 ```
+---
 
-Install dependencies:
+## Install Dependencies
 
 ```bash
 pip install PyQt5
 ```
+---
 
-## Usage
-
-Run the application:
+## ▶️ Run the Application
 
 ```bash
 python gui_app.py
 ```
-
-## Future Enhancements
-
-- Persistent data storage (file or database)
-- User authentication and lending history
-- Advanced search and filtering
-- Support for multiple copies per book
